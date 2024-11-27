@@ -2,31 +2,31 @@ const Joi = require('joi');
 
 const schema = Joi.object({
     info: Joi.object({
-        erstellt: Joi.string().isoDate().required(), // Datumsformat
-        verein: Joi.string().required(),            // Name des Vereins
-        ipaddresse: Joi.string().ip({ version: ['ipv4'] }).required() // IPv4-Adresse
+        erstellt: Joi.string().isoDate().required(),
+        verein: Joi.string().required(),
+        ipaddresse: Joi.string().ip({ version: ['ipv4'] }).required()
     }).required(),
 
     anmeldung: Joi.object({
-        Anrede: Joi.string().valid('Herr', 'Frau', 'Divers').required(), // Nur gültige Anreden
-        Familienname: Joi.string().required(),       // Familienname ist erforderlich
-        Vorname: Joi.string().required(),            // Vorname ist erforderlich
-        Strasse: Joi.string().required(),            // Straße ist erforderlich
-        Plz: Joi.string().pattern(/^\d{4,5}$/).required(), // PLZ, 4 oder 5 Ziffern
-        Ort: Joi.string().required(),                // Ort ist erforderlich
-        Land: Joi.string().required(),               // Land ist erforderlich
-        Telefon: Joi.string().allow(''),             // Telefon kann leer sein
-        Telefax: Joi.string().allow(''),             // Telefax kann leer sein
-        "Mail-Adresse": Joi.string().email().allow('') // E-Mail-Adresse kann leer sein
+        Anrede: Joi.string().valid('Herr', 'Frau', 'Divers').required(),
+        Familienname: Joi.string().required(),
+        Vorname: Joi.string().required(),
+        Strasse: Joi.string().required(),
+        Plz: Joi.string().pattern(/^\d{4,5}$/).required(),
+        Ort: Joi.string().required(),
+        Land: Joi.string().required(),
+        Telefon: Joi.string().allow(''),
+        Telefax: Joi.string().allow(''),
+        "Mail-Adresse": Joi.string().email().allow('')
     }).required(),
 
     teilnehmer: Joi.array().items(
         Joi.object({
-            Nachname: Joi.string().required(),          // Nachname des Teilnehmers
-            Vorname: Joi.string().required(),           // Vorname des Teilnehmers
-            Altersklasse: Joi.string().required(),      // Altersklasse ist erforderlich
-            Klasse: Joi.string().required(),            // Klasse ist erforderlich
-            Startzeit: Joi.string().valid('Vormittag', 'Nachmittag').required() // Gültige Startzeiten
+            Nachname: Joi.string().required(),
+            Vorname: Joi.string().required(),
+            Altersklasse: Joi.string().required(),
+            Klasse: Joi.string().required(),
+            Startzeit: Joi.string().valid('Vormittag', 'Nachmittag').required()
         })
     ).required()
 });
